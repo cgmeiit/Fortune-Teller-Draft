@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Copy_Inher
 {
+    
     class FortuneTeller
     {
         //I'm just setting this up as a regular old class. 
@@ -16,20 +17,35 @@ namespace Copy_Inher
         public string Name { get; set; } = "Esmerelda";
 
         public string ExperienceLevel { get; set; }
-
+       
         //Methods
 
         public void Greet()
         {
-            Console.WriteLine("Hello! Welcome to Spiritual cleansing of your living space.");
-            Console.WriteLine("Let us begin with cleaning ritual of your home");
+            Console.WriteLine("Hello! Welcome your future.");
+            Console.WriteLine("Let us begin with looking into my CrystalBall");
 
 
         }
 
+        internal void ListServices()
+        {
+            int counter = 1;
+            Console.WriteLine("choose a magic service (Enter a number)");
+
+            foreach (Magic AvailableService in Program.AvailableServices)
+            {
+                Console.WriteLine("{0} - {1}", counter++, AvailableService.Name);
+
+            }
+
+            
+            
+        }
+
         public void StartService(Service service)
         {
-            Console.WriteLine("For you, my {0}! Yes, perfect. It only costs {1} and that's fine by everyone.", service.Name, service.Price);
+             Console.WriteLine("For you, my {0}! Yes, perfect. It only costs {1} and that's fine by everyone.", service.Name, service.Price);
         }
 
 
@@ -37,6 +53,12 @@ namespace Copy_Inher
         public void Farewell()
         {
             Console.WriteLine("Thank you for playing.");
+        }
+
+        internal void PlayAgain()
+        {
+            Console.WriteLine("Want to play again?");
+
         }
 
 

@@ -6,35 +6,32 @@ using System.Threading.Tasks;
 
 namespace Copy_Inher
 {
-    class CrystalBall : Magic,IRandomPhrase
+    class Palm_reading:Magic,IRandomPhrase
     {
-        //straight up field. I really don't need a property. Just using globally so random behaves well.
-       // private Random random = new Random();//changed due to 
-
-        //properties
         public List<string> Phrases { get; set; } = new List<string>();
 
-        public override string Name { get; set; } = "Crystal Ball";
+        public override string Name { get; set; } = "Palm Reading";
 
         public override Enum Difficulty { get; set; } = DifficultyOptions.easy;
 
-        public Random Rnd { get; set; }=new Random();
+        public Random Rnd { get; set; } = new Random();
         //changed from field to property b/c of Interface 
 
 
         public override void Work()
         {
-           // base.Work();
+            //base.Work();
             //now let's call a method that will get a result for the crystal ball
             this.Result = GetPhrase();
+          
 
         }
 
         public void CreatePhrases()
         {
-            Phrases.Add("Night time is a dark place for you.");
-            Phrases.Add("I see shiny objects in your near future");
-            Phrases.Add("The decorating around you needs some help.");
+            Phrases.Add("Your right palm life line reads that you will become a zombie in next 5 years.");
+            Phrases.Add("On your left palm I see you traveling across the Atlantic Ocean to buy unusual shoes");
+            Phrases.Add("There will be a $100000.00 waiting for you at end of this reading.");
         }
 
         //let's create an overloaded method now
@@ -46,27 +43,24 @@ namespace Copy_Inher
         public string GetPhrase()
         {
             //local variable
-            int randomNumber =Rnd.Next(Phrases.Count);
+            int randomNumber = Rnd.Next(Phrases.Count);
             return Phrases.ElementAt(randomNumber);
 
         }
 
-        
+
         //constructor
         //let's override some of the properties of what we inherited from magic and service here.
-        public CrystalBall()
+        public Palm_reading()
         {
             this.Price = 45.00M;
             this.PercentEffective = 65;
             this.BlackMagic = false;
-            this.Expertise = "beginner";
+            this.Difficulty=Difficulty;
             Program.AvailableServices.Add((Service)this);
-
             //I want to call my initializer for phrases.
             CreatePhrases();
         }
 
     }
-
-
 }

@@ -16,7 +16,14 @@ namespace Copy_Inher
         public virtual bool BlackMagic { get; set; }
 
         //how about another property that gives us the effectiveness of this magical item?
-        public virtual int PercentEffective { get; set; }
+        public virtual new int PercentEffective { get; set; }
+
+       
+
+        
+
+
+
 
         //let's make sure all of them have a name!
         public override string Name { get; set; }
@@ -24,20 +31,34 @@ namespace Copy_Inher
         //let's throw in the level of expertise the fortune teller needs to use this item
         protected virtual string Expertise { get; set; }
 
-        //How about a  work -- "make it go now" method?
-        public virtual void Work()
+        public override decimal Price { get; set; }
+
+        public override Enum Difficulty  { get; set; }
+
+        public override string Result { get; set; }
+
+
+
+
+
+
+       // How about a work -- "make it go now" method?
+        public override void Work()
         {
             Console.WriteLine("Let me pull out my {0}", this.Name);
         }
-        //What about a Show method for sharing the results -- showing the magical object to the user?
-        public virtual void Show()
+       // What about a Show method for sharing the results -- showing the magical object to the user?
+        public override void Show()
         {
             Console.WriteLine("Oh, my. The {0} told me, yes, your future.", this.Name);
             Console.WriteLine(this.Result);
         }
-        public virtual void StateEffectiveness()
+        public override void StateEffectiveness()
         {
             Console.WriteLine("In case you're wondering, this method is {2} percent effective.", this.Name, this.Result, this.PercentEffective);
+            
+
+
         }
     }
 

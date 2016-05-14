@@ -8,37 +8,52 @@ namespace Copy_Inher
 {
     class Program
     {
+        public static List<Service> AvailableServices { get; set; } = new List<Service>();
         static void Main(string[] args)
         {
-           // our game will start here
-            //let's create a fortune teller
+            //our game will start here
+            //let's create some Magic services
             FortuneTeller fortuneTeller = new FortuneTeller();
             CrystalBall crystalBall = new CrystalBall();
-            //numerology seetting 
-            Numerology numerology = new Numerology();
-            fortuneTeller.Greet(); //say hi
-            fortuneTeller.StartService((Service)numerology); //talk about the service that's being performed
-            crystalBall.Work(); //run it (do the service)
-            crystalBall.Show(); //display it (state results of the service)
-            numerology.StateEffectiveness(); //state effectiveness of service.
-            fortuneTeller.Farewell(); //say goodbye.
-            numerology.MatchPhrases();
-            Console.WriteLine(numerology.BlackMagic); // Console.WriteLine("Whats your favorite number ");
-            //sibling to magic HouseCleansing 
-            HouseCleansing cleansing = new HouseCleansing();
-            fortuneTeller.StartService((Service)cleansing); //talk about the service that's being performed
-            cleansing.Work(); //run it (do the service)
-            cleansing.Show(); //display it (state results of the service)
-            cleansing.StateEffectiveness(); //state effectiveness of service.
-            fortuneTeller.Farewell(); //say goodbye.
-            cleansing.CreatePhrases="";
-            Console.WriteLine(cleansing.BlackMagic);
-           
+            Palm_reading palmReading = new Palm_reading();
+            Numerology numbers = new Numerology();
+
+            //fortuneTeller.Greet(); //say hi
+            do
+            {
+                fortuneTeller.ListServices();
+                int selection = int.Parse(Console.ReadLine());
+              
+
+                //get service at the index of their num - 1.
+                Magic selectedService = (Magic)AvailableServices[0]; //NOTE, b/c this is a Magic, not a specific child, we'll get Magic's implementations below.
+                try
+                {
+                    selectedService = (Magic)AvailableServices[selection - 1];
+                }
+                catch (Exception e)
+                {
+                    //Console.WriteLine(e.Message);
+                    Console.WriteLine("Since I didn't understand your response, I'm just going to start with a {0}", selectedService);
+                }
+                fortuneTeller.StartService(selectedService); //talk about the service that's being performed
+                selectedService.Work(); //run it (do the service)
+                selectedService.Show(); //display it (state results of the service)
+                selectedService.StateEffectiveness(); //state effectiveness of service.
+                fortuneTeller.PlayAgain();
+            } while (Console.ReadLine().ToUpper() == "Y");
 
 
+            fortuneTeller.Farewell(); //say goodbye.
         }
-
-
     }
 }
+
+
+
+
+
+
+
+
 
